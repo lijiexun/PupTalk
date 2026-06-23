@@ -143,6 +143,16 @@ function drawMouthGap(ctx: CanvasRenderingContext2D, mouthOpen: number, x = 66, 
   ctx.fill();
 }
 
+function drawRigShadow(ctx: CanvasRenderingContext2D): void {
+  ctx.save();
+  ctx.globalAlpha = 0.18;
+  ellipse(ctx, -35, 199, 102, 17, "#10265c");
+  ctx.globalAlpha = 0.08;
+  ellipse(ctx, -25, 122, 72, 94, "#10265c");
+  ellipse(ctx, 10, -5, 118, 86, "#10265c");
+  ctx.restore();
+}
+
 function withRig(
   ctx: CanvasRenderingContext2D,
   controls: PuppetControls,
@@ -164,11 +174,7 @@ function withRig(
   ctx.translate(width * 0.5 + controls.headX, height * 0.48 + controls.headY + state.bounce);
   ctx.scale(controls.facing * scale, scale);
   ctx.rotate(controls.headTilt);
-  ctx.save();
-  ctx.translate(9, 13);
-  ctx.filter = "brightness(0) opacity(0.18) blur(3px)";
-  draw(state);
-  ctx.restore();
+  drawRigShadow(ctx);
   draw(state);
   ctx.restore();
 }
