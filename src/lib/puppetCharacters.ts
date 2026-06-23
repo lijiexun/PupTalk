@@ -147,55 +147,82 @@ function drawCharacterShapeShadow(ctx: CanvasRenderingContext2D, characterId: Ch
   ctx.save();
   ctx.translate(9, 13);
   ctx.filter = "blur(3px)";
+  const shadow = "rgba(52, 32, 24, 0.16)";
+  const softShadow = "rgba(52, 32, 24, 0.11)";
+  const darkShadow = "rgba(24, 18, 16, 0.18)";
 
   if (characterId === "cat") {
-    ellipse(ctx, -122, 43, 28, 65, "rgba(18, 18, 18, 0.15)");
-    ellipse(ctx, -47, 114, 66, 82, "rgba(18, 18, 18, 0.17)");
-    ellipse(ctx, -84, -39, 24, 49, "rgba(18, 18, 18, 0.13)");
-    ellipse(ctx, 51, -49, 27, 51, "rgba(18, 18, 18, 0.13)");
-    ellipse(ctx, -9, -7, 101, 78, "rgba(18, 18, 18, 0.18)");
-    ellipse(ctx, 25, 21, 64, 38, "rgba(18, 18, 18, 0.15)");
+    strokePath(ctx, [[-86, 86], [-143, 92], [-145, 17], [-123, 4], [-115, 62]], darkShadow, 17);
+    ellipse(ctx, -47, 114, 65, 82, darkShadow);
+    strokePath(ctx, [[-63, 96], [-73, 151]], softShadow, 7);
+    strokePath(ctx, [[-30, 96], [-29, 153]], softShadow, 7);
+    path(ctx, [[-84, -39], [-65, -112], [-17, -50]], softShadow);
+    path(ctx, [[23, -48], [60, -113], [77, -31]], softShadow);
+    ellipse(ctx, -9, -7, 100, 78, darkShadow);
+    ellipse(ctx, 23, -2, 78, 59, softShadow);
+    ellipse(ctx, 50, 32, 32, 12, softShadow);
   } else if (characterId === "lion") {
-    ellipse(ctx, -130, 113, 31, 53, "rgba(52, 32, 24, 0.14)");
-    ellipse(ctx, -42, 120, 56, 72, "rgba(52, 32, 24, 0.16)");
-    ellipse(ctx, -52, 178, 13, 31, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -10, 178, 13, 31, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -17, -11, 153, 132, "rgba(52, 32, 24, 0.2)");
-    ellipse(ctx, 18, -5, 82, 64, "rgba(52, 32, 24, 0.16)");
-    ellipse(ctx, 51, 24, 51, 36, "rgba(52, 32, 24, 0.15)");
+    strokePath(ctx, [[-64, 145], [-139, 160], [-166, 105], [-157, 64], [-136, 111]], shadow, 18);
+    path(ctx, [[-137, 108], [-157, 93], [-170, 120], [-146, 132]], softShadow);
+    ellipse(ctx, -42, 120, 55, 72, shadow);
+    strokePath(ctx, [[-52, 162], [-61, 197]], softShadow, 10);
+    strokePath(ctx, [[-15, 164], [-5, 197]], softShadow, 10);
+    ellipse(ctx, -17, -11, 153, 132, darkShadow);
+    ellipse(ctx, -95, -7, 67, 105, shadow);
+    ellipse(ctx, 53, -5, 74, 103, shadow);
+    ellipse(ctx, -21, -92, 92, 54, softShadow);
+    ellipse(ctx, -20, 70, 105, 60, softShadow);
+    ellipse(ctx, -12, -12, 96, 78, shadow);
+    ellipse(ctx, 37, 22, 50, 35, softShadow);
   } else if (characterId === "tin-man") {
-    ellipse(ctx, -113, 126, 18, 47, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, 48, 126, 18, 47, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, -78, 181, 12, 28, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, -4, 181, 12, 28, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, -30, 134, 58, 71, "rgba(52, 32, 24, 0.16)");
-    ellipse(ctx, -2, -24, 76, 78, "rgba(52, 32, 24, 0.17)");
-    ellipse(ctx, 0, -118, 47, 42, "rgba(52, 32, 24, 0.13)");
+    roundedRect(ctx, -78, 80, 96, 111, 18, shadow);
+    strokePath(ctx, [[-80, 103], [-122, 139]], softShadow, 18);
+    strokePath(ctx, [[17, 104], [66, 140]], softShadow, 18);
+    strokePath(ctx, [[-55, 168], [-66, 197]], softShadow, 12);
+    strokePath(ctx, [[-15, 168], [-6, 197]], softShadow, 12);
+    roundedRect(ctx, -58, 44, 72, 52, 14, softShadow);
+    path(ctx, [[-51, -100], [0, -166], [50, -100]], softShadow);
+    ellipse(ctx, 0, -99, 61, 14, softShadow);
+    roundedRect(ctx, -75, -94, 142, 139, 22, darkShadow);
+    roundedRect(ctx, 2, 6, 70, 26, 6, softShadow);
   } else if (characterId === "scarecrow") {
-    ellipse(ctx, -110, 120, 16, 51, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, 38, 120, 16, 51, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -80, 174, 12, 35, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -19, 174, 12, 35, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -32, 126, 61, 69, "rgba(52, 32, 24, 0.16)");
-    ellipse(ctx, -9, -19, 83, 78, "rgba(52, 32, 24, 0.17)");
-    ellipse(ctx, -6, -103, 97, 32, "rgba(52, 32, 24, 0.13)");
+    strokePath(ctx, [[-79, 103], [-139, 137]], shadow, 12);
+    strokePath(ctx, [[4, 100], [62, 136]], shadow, 12);
+    strokePath(ctx, [[-69, 151], [-91, 198]], shadow, 11);
+    strokePath(ctx, [[-24, 151], [-13, 198]], shadow, 11);
+    roundedRect(ctx, -82, 80, 101, 91, 12, shadow);
+    path(ctx, [[-105, 88], [36, 86], [8, 132], [-88, 130]], softShadow);
+    for (let i = 0; i < 15; i += 1) {
+      strokePath(ctx, [[-103 + i * 13, -61], [-125 + i * 17, -95]], softShadow, 6);
+    }
+    path(ctx, [[-103, -115], [-57, -144], [66, -123], [92, -95], [26, -82], [-89, -86]], softShadow);
+    path(ctx, [[-45, -144], [28, -178], [49, -112], [-42, -105]], softShadow);
+    roundedRect(ctx, -83, -82, 149, 126, 28, darkShadow);
+    roundedRect(ctx, -61, 9, 28, 19, 5, softShadow);
   } else if (characterId === "cowboy") {
-    ellipse(ctx, -105, 122, 18, 48, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, 42, 121, 18, 48, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -62, 179, 12, 30, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -10, 179, 12, 30, "rgba(52, 32, 24, 0.13)");
-    ellipse(ctx, -34, 136, 57, 72, "rgba(52, 32, 24, 0.16)");
-    ellipse(ctx, -8, -8, 97, 89, "rgba(52, 32, 24, 0.17)");
-    ellipse(ctx, -20, -105, 124, 20, "rgba(52, 32, 24, 0.14)");
-    ellipse(ctx, -10, -142, 56, 45, "rgba(52, 32, 24, 0.13)");
+    roundedRect(ctx, -78, 80, 91, 112, 18, shadow);
+    path(ctx, [[-86, 76], [20, 77], [-4, 125], [-71, 121]], softShadow);
+    strokePath(ctx, [[-60, 160], [-67, 197]], softShadow, 12);
+    strokePath(ctx, [[-18, 160], [-6, 197]], softShadow, 12);
+    strokePath(ctx, [[-87, 102], [-128, 138]], shadow, 17);
+    strokePath(ctx, [[17, 102], [65, 135]], shadow, 17);
+    roundedRect(ctx, -147, -122, 253, 34, 17, softShadow);
+    roundedRect(ctx, -61, -178, 103, 88, 16, softShadow);
+    path(ctx, [[-65, -103], [43, -104], [92, -86], [-111, -86]], softShadow);
+    ellipse(ctx, -16, -8, 96, 89, darkShadow);
+    roundedRect(ctx, -59, -67, 104, 109, 34, shadow);
+    strokePath(ctx, [[-55, -55], [-59, 0]], softShadow, 15);
   } else {
-    ellipse(ctx, -124, 124, 22, 50, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, 58, 124, 22, 50, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, -72, 182, 12, 29, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, -9, 182, 12, 29, "rgba(52, 32, 24, 0.12)");
-    ellipse(ctx, -35, 136, 67, 78, "rgba(52, 32, 24, 0.15)");
-    ellipse(ctx, -5, -18, 96, 78, "rgba(52, 32, 24, 0.16)");
-    ellipse(ctx, -13, -16, 126, 97, "rgba(52, 32, 24, 0.11)");
+    roundedRect(ctx, -95, 74, 118, 124, 25, shadow);
+    path(ctx, [[-94, 83], [23, 83], [8, 132], [-83, 132]], softShadow);
+    strokePath(ctx, [[-101, 101], [-148, 141]], shadow, 21);
+    strokePath(ctx, [[30, 102], [88, 141]], shadow, 21);
+    strokePath(ctx, [[-63, 166], [-74, 199]], softShadow, 12);
+    strokePath(ctx, [[-18, 166], [-7, 199]], softShadow, 12);
+    roundedRect(ctx, -91, -82, 180, 128, 38, softShadow);
+    roundedRect(ctx, -82, -72, 164, 109, 33, softShadow);
+    ellipse(ctx, -14, -14, 124, 96, darkShadow);
+    ellipse(ctx, 7, -12, 83, 72, shadow);
   }
 
   ctx.restore();
