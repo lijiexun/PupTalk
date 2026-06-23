@@ -143,13 +143,61 @@ function drawMouthGap(ctx: CanvasRenderingContext2D, mouthOpen: number, x = 66, 
   ctx.fill();
 }
 
-function drawRigShadow(ctx: CanvasRenderingContext2D): void {
+function drawCharacterShapeShadow(ctx: CanvasRenderingContext2D, characterId: CharacterId): void {
   ctx.save();
-  ctx.globalAlpha = 0.18;
-  ellipse(ctx, -35, 199, 102, 17, "#10265c");
-  ctx.globalAlpha = 0.08;
-  ellipse(ctx, -25, 122, 72, 94, "#10265c");
-  ellipse(ctx, 10, -5, 118, 86, "#10265c");
+  ctx.translate(9, 13);
+  ctx.filter = "blur(3px)";
+
+  if (characterId === "cat") {
+    ellipse(ctx, -122, 43, 28, 65, "rgba(18, 18, 18, 0.15)");
+    ellipse(ctx, -47, 114, 66, 82, "rgba(18, 18, 18, 0.17)");
+    ellipse(ctx, -84, -39, 24, 49, "rgba(18, 18, 18, 0.13)");
+    ellipse(ctx, 51, -49, 27, 51, "rgba(18, 18, 18, 0.13)");
+    ellipse(ctx, -9, -7, 101, 78, "rgba(18, 18, 18, 0.18)");
+    ellipse(ctx, 25, 21, 64, 38, "rgba(18, 18, 18, 0.15)");
+  } else if (characterId === "lion") {
+    ellipse(ctx, -130, 113, 31, 53, "rgba(52, 32, 24, 0.14)");
+    ellipse(ctx, -42, 120, 56, 72, "rgba(52, 32, 24, 0.16)");
+    ellipse(ctx, -52, 178, 13, 31, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -10, 178, 13, 31, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -17, -11, 153, 132, "rgba(52, 32, 24, 0.2)");
+    ellipse(ctx, 18, -5, 82, 64, "rgba(52, 32, 24, 0.16)");
+    ellipse(ctx, 51, 24, 51, 36, "rgba(52, 32, 24, 0.15)");
+  } else if (characterId === "tin-man") {
+    ellipse(ctx, -113, 126, 18, 47, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, 48, 126, 18, 47, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, -78, 181, 12, 28, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, -4, 181, 12, 28, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, -30, 134, 58, 71, "rgba(52, 32, 24, 0.16)");
+    ellipse(ctx, -2, -24, 76, 78, "rgba(52, 32, 24, 0.17)");
+    ellipse(ctx, 0, -118, 47, 42, "rgba(52, 32, 24, 0.13)");
+  } else if (characterId === "scarecrow") {
+    ellipse(ctx, -110, 120, 16, 51, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, 38, 120, 16, 51, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -80, 174, 12, 35, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -19, 174, 12, 35, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -32, 126, 61, 69, "rgba(52, 32, 24, 0.16)");
+    ellipse(ctx, -9, -19, 83, 78, "rgba(52, 32, 24, 0.17)");
+    ellipse(ctx, -6, -103, 97, 32, "rgba(52, 32, 24, 0.13)");
+  } else if (characterId === "cowboy") {
+    ellipse(ctx, -105, 122, 18, 48, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, 42, 121, 18, 48, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -62, 179, 12, 30, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -10, 179, 12, 30, "rgba(52, 32, 24, 0.13)");
+    ellipse(ctx, -34, 136, 57, 72, "rgba(52, 32, 24, 0.16)");
+    ellipse(ctx, -8, -8, 97, 89, "rgba(52, 32, 24, 0.17)");
+    ellipse(ctx, -20, -105, 124, 20, "rgba(52, 32, 24, 0.14)");
+    ellipse(ctx, -10, -142, 56, 45, "rgba(52, 32, 24, 0.13)");
+  } else {
+    ellipse(ctx, -124, 124, 22, 50, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, 58, 124, 22, 50, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, -72, 182, 12, 29, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, -9, 182, 12, 29, "rgba(52, 32, 24, 0.12)");
+    ellipse(ctx, -35, 136, 67, 78, "rgba(52, 32, 24, 0.15)");
+    ellipse(ctx, -5, -18, 96, 78, "rgba(52, 32, 24, 0.16)");
+    ellipse(ctx, -13, -16, 126, 97, "rgba(52, 32, 24, 0.11)");
+  }
+
   ctx.restore();
 }
 
@@ -159,6 +207,7 @@ function withRig(
   width: number,
   height: number,
   options: DrawOptions,
+  characterId: CharacterId,
   draw: (state: RigState) => void,
 ): void {
   const mouthOpen = clamp(controls.mouthOpen, 0, 1);
@@ -174,7 +223,7 @@ function withRig(
   ctx.translate(width * 0.5 + controls.headX, height * 0.48 + controls.headY + state.bounce);
   ctx.scale(controls.facing * scale, scale);
   ctx.rotate(controls.headTilt);
-  drawRigShadow(ctx);
+  drawCharacterShapeShadow(ctx, characterId);
   draw(state);
   ctx.restore();
 }
@@ -437,7 +486,7 @@ export function drawCharacterPuppet(
     return;
   }
 
-  withRig(ctx, controls, width, height, options, (state) => {
+  withRig(ctx, controls, width, height, options, characterId, (state) => {
     if (characterId === "cat") {
       drawCat(ctx, state);
     } else if (characterId === "lion") {
